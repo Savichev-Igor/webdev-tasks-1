@@ -1,7 +1,3 @@
-/**
- * Created by savi on 20.02.16.
- */
-
 const counter = require('./counter.js');
 
 // counter работает весьма шустро

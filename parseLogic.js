@@ -1,8 +1,4 @@
-/**
- * Created by savi on 27.02.16.
- */
-
-const fsLogic = require('./fsLogic');
+const fs = require('fs');
 const config = require('./config');
 
 const englishLetterRegExp = /[a-z]/;
@@ -16,11 +12,11 @@ const russianLettersRegExp = /[^а-яё]/;
  * @return {string} newText
  */
 function removeSymbols(text, list) {
-    var newText = text;
+    var newText;
 
-    list.forEach(function (item) {
-        newText = newText.replace(new RegExp('\\' + item, 'g'), ' ');
-    });
+    newText = list.reduce(function (res, current) {
+        return res.replace(new RegExp('\\' + current, 'g'), ' ');
+    }, text);
 
     return newText;
 }
@@ -66,9 +62,9 @@ function clean(textsList, callback) {
     var tempText;
     var tempCleanlyWordsList;
 
-    var punctuationMarks = fsLogic.readFile(config.configObj.punctuationMarks).split('\n');
-    var prepositions = fsLogic.readFile(config.configObj.prepositions).split('\n');
-    var unions = fsLogic.readFile(config.configObj.unions).split('\n');
+    var punctuationMarks = fs.readFileSync(config.punctuationMarks, 'utf-8').split('\n');
+    var prepositions = fs.readFileSync(config.prepositions, 'utf-8').split('\n');
+    var unions = fs.readFileSync(config.unions, 'utf-8').split('\n');
 
     textsList.forEach(function (item) {
         tempText = removeSymbols(item, punctuationMarks);

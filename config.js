@@ -1,24 +1,17 @@
-/**
- * Created by savi on 27.02.16.
- */
+const fs = require('fs');
 
-const fsLogic = require('./fsLogic');
-
-const configObj = {
+module.exports = {
     gitHubApi: 'https://api.github.com',
-    key: fsLogic.readFile('key.txt'),
+    key: fs.readFileSync('key.txt', 'utf-8'),
     mainRepo: 'urfu-2015',
     jsTasksPrefix: 'javascript-tasks-',
     verstkaTasksPrefix: 'verstka-tasks-',
     numberTasks: 1,
 
-    onlineDictHost: 'http://vnutrislova.net',
-    onlineDictPath: '/разбор/по-составу/',
-    rootRegExp: /корень \\[(.*?)\\]/,
+    onlineDict: 'http://vnutrislova.net/разбор/по-составу/',
+    rootRegExp: /корень \[(.*?)\]/,
 
     unions: 'unions.txt',
     prepositions: 'prepositions.txt',
     punctuationMarks: 'punctuationMarks.txt'
 };
-
-module.exports.configObj = configObj;

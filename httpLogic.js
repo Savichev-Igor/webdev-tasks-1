@@ -12,10 +12,10 @@ function getRepos(prefixes) {
 
     var repos = [];
 
-    for (var i = 1; i <= config.configObj.numberTasks; i++) {
+    for (var i = 1; i <= config.numberTasks; i++) {
         prefixes.forEach(function (prefix) {
-            URI = `${config.configObj.gitHubApi}/repos/${config.configObj.mainRepo}/` +
-                  `${prefix}${i}/readme/?access_token=${config.configObj.key}`;
+            URI = `${config.gitHubApi}/repos/${config.mainRepo}/` +
+                  `${prefix}${i}/readme/?access_token=${config.key}`;
             repos.push(URI);
         });
     }
@@ -112,7 +112,7 @@ function getWordsAndRoots(wordsLists, callback) {
 
     async.each(words,
         function (word, cb) {
-            URI = `${config.configObj.onlineDictHost}${config.configObj.onlineDictPath}${word}`;
+            URI = `${config.onlineDict}${word}`;
             asyncRequest({
                     url: encodeURI(URI),
                     method: 'GET',
@@ -123,8 +123,8 @@ function getWordsAndRoots(wordsLists, callback) {
                 function (err, res, body) {
                     var root = word;
                     if (!err && res.statusCode === 200) {
-                        if (config.configObj.rootRegExp.exec(body) !== null) {
-                            root = config.configObj.rootRegExp.exec(body)[1];
+                        if (config.rootRegExp.exec(body) !== null) {
+                            root = config.rootRegExp.exec(body)[1];
                         }
                     }
                     wordsRoots[word] = root;

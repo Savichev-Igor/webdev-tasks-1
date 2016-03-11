@@ -16,8 +16,8 @@ var usedWords = [];
  */
 function count(word, callback) {
     async.waterfall([
-        async.apply(httpLogic.getTasks, [config.configObj.jsTasksPrefix,
-            config.configObj.verstkaTasksPrefix]),
+        async.apply(httpLogic.getTasks, [config.jsTasksPrefix,
+            config.verstkaTasksPrefix]),
         parseLogic.clean,
         httpLogic.getWordsAndRoots
     ], function (err, wordsList, wordsRoots) {
@@ -50,8 +50,8 @@ function extendCount(word) {
  */
 function top(n, callback) {
     async.waterfall([
-        async.apply(httpLogic.getTasks, [config.configObj.jsTasksPrefix,
-            config.configObj.verstkaTasksPrefix]),
+        async.apply(httpLogic.getTasks, [config.jsTasksPrefix,
+            config.verstkaTasksPrefix]),
         parseLogic.clean,
         httpLogic.getWordsAndRoots
     ], function (err, wordsList, wordsRoots) {
