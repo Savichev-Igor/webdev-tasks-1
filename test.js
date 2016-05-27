@@ -1,3 +1,5 @@
+'use strict';
+
 const counter = require('./counter.js');
 
 // counter работает весьма шустро

@@ -1,3 +1,5 @@
+'use strict';
+
 const async = require('async');
 const asyncRequest = require('request');
 const config = require('./config');
